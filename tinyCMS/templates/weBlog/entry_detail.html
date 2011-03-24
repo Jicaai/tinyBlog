@@ -1,0 +1,10 @@
+<html>
+<head>
+<title>Entries details</title>
+</head>
+<body>
+<h1>{{object.title}}</h1>
+<h3>{{object.author}}  {{object.pub_date|date:"Y  b  d"}}</h3>
+{{object.body_html|safe}}
+</body>
+</html>
