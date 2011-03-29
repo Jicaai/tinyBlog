@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Filename:  allfile.py
-# Author: Tiny
+# Filename:  del_pyc.py
+# Author: iLazy
 # Date:2011-03-26
 
 import os
 import fnmatch
 
-def all_file(root, patterns='*'):
+def del_pyc(root, patterns='*'):
         """docstring for all_file""
         """
         patterns = patterns.split(';')
@@ -20,5 +20,6 @@ def all_file(root, patterns='*'):
                                         yield os.path.join(path, name)
 
 if __name__=='__main__':
-        for path in all_file(os.getcwd(),'*.pyc'):
+        for path in del_pyc(os.getcwd(),'*.pyc'):
                 print path
+                os.remove(path)
