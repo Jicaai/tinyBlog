@@ -6,7 +6,6 @@
 
 import os
 import fnmatch
-
 def del_pyc(root, patterns='*'):
         """del all the pyc file in the current work space
         """
@@ -23,3 +22,4 @@ if __name__=='__main__':
         for path in del_pyc(os.getcwd(),'*.pyc'):
                 print path
                 os.remove(path)
+
