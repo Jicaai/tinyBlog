@@ -8,7 +8,7 @@ import os
 import fnmatch
 
 def del_pyc(root, patterns='*'):
-        """docstring for all_file""
+        """del all the pyc file in the current work space
         """
         patterns = patterns.split(';')
         for path, subdir, files in os.walk(root):
