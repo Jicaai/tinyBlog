@@ -19,7 +19,7 @@ def del_pyc(root, patterns='*'):
                                         yield os.path.join(path, name)
 
 if __name__=='__main__':
-        for path in del_pyc(os.getcwd(),'*.pyc'):
+        for path in del_pyc(os.getcwd(),'*.pyc; *.swp'):
                 print path
                 os.remove(path)
 

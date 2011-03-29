@@ -1,0 +1,10 @@
+<html>
+<head>
+<title>Entries details</title>
+</head>
+<body>
+<h1>{{entry.title}}</h1>
+<h3>{{entry.author}}  {{entry.pub_date}}</h3>
+{{entry.body}}
+</body>
+</html>
