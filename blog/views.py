@@ -1,9 +1,9 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from weBlog.models import Entry
+from blog.models import Entry
 
 
 def entries_index(request):
-    return render_to_response('weBlog/entry_index.html',
+    return render_to_response('blog/entry_index.html',
 	    {'entry_list': Entry.objects.all()})
 
 def entry_detail(request, year, month, day, slug):
@@ -15,5 +15,5 @@ def entry_detail(request, year, month, day, slug):
 	                           pub_date__month=pub_date.month,
 				   pub_date__day=pub_date.day,
 				   slug=slug)
-    return render_to_response('weBlog/entry_detail.html',
+    return render_to_response('blog/entry_detail.html',
                               {'entry':entry})
