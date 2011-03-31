@@ -1,6 +1,6 @@
 from django.contrib import admin
-from weBlog.models import Category
-from weBlog.models import Entry
+from blog.models import Category
+from blog.models import Entry
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
