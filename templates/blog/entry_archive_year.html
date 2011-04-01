@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>Entries archive year</h1>
-{% for entry in date_list %}
+{% for entry in object_list %}
 <h2>{{ entry.title }}</h2>
 <p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
 {% if entry.excerpt_html %}
