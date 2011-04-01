@@ -31,12 +31,11 @@ urlpatterns = patterns('',
 
     # weBlog
     (r'^blog/$', 'django.views.generic.date_based.archive_index', entry_info_dict),
-    (r'^blog/(?P<year>\d{4})/$', 'django.views.generic.date_based.archive_year', entry_info_dict),
+    (r'^blog/(?P<year>\d{4})/$', 'django.views.generic.date_based.archive_year', dict(entry_info_dict, make_object_list=True)),
     (r'^blog/(?P<year>\d{4})/(?P<month>\w{3})/$', 'django.views.generic.date_based.archive_month', entry_info_dict),
     (r'^blog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/$', 'django.views.generic.date_based.archive_day', entry_info_dict),
     # (r'^weblog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 'weBlog.views.entry_detail'),
-    (r'^blog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
-            'django.views.generic.date_based.object_detail', entry_info_dict),
+    (r'^blog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 'django.views.generic.date_based.object_detail', entry_info_dict),
 
 
     # (r'', include('django.contrib.flatpages.urls')),
