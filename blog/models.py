@@ -60,6 +60,10 @@ class Entry(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "%s/%s/" % (self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
+        return ('blog_entry_detail',(),{ 'year': self.pub_date.strftime("%Y"),
+                                         'month': self.pub_date.strftime("%b").lower(),
+                                         'day': self.pub_date.strftime("%d"),
+                                         'slug': se;f.slug })
+    get_absulute_url = models.permalink(get_absolute_url)
 
 
