@@ -59,11 +59,12 @@ class Entry(models.Model):
     def __unicode__(self):
         return self.title
 
+    @models.permalink
     def get_absolute_url(self):
         return ('blog_entry_detail',(),{ 'year': self.pub_date.strftime("%Y"),
                                          'month': self.pub_date.strftime("%b").lower(),
                                          'day': self.pub_date.strftime("%d"),
-                                         'slug': se;f.slug })
-    get_absulute_url = models.permalink(get_absolute_url)
+                                         'slug': self.slug })
+    #get_absolute_url = models.permalink(get_absolute_url)
 
 
