@@ -93,14 +93,14 @@ class Link(models.Model):
     def __uicode__(self):
         return self.title
     def save(self):
-        if not self.id and self.post_elsewhere:
+        '''if not self.id and self.post_elsewhere:
             import pydelicious
             from django.utils.encoding import smart_str
             pydelicious.add(settings.DELICIOUS_USER,
                             settings.DELICIOUS_PASSWORD,
                             smart_str(self.url),
                             smart_str(self.title),
-                            smart_str(self.tags))
+                            smart_str(self.tags))'''
         if self.description:
             self.description_html = markdown(self.description)
         super(Link, self).save()
