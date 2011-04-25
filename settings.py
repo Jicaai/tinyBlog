@@ -13,12 +13,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'tinyCMS',                      # Or path to database file if using sqlite3.
-        'USER': 'tinyCMS',                      # Not used with sqlite3.
-        'PASSWORD': 'tinycms',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+	'ENGINE':'django.db.backends.mysql',
+    'USER':'django',
+	'NAME':'django',
+    'PASSWORD':'djangoproject',
     }
 }
 
@@ -29,7 +27,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'China/Shanghai'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
