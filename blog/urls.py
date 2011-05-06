@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from blog.models import Entry,Link
+from models import Entry, Link, Category
 
 entry_info_dict ={
     'queryset': Entry.objects.all(),
@@ -24,3 +24,9 @@ urlpatterns = patterns('django.views.generic.date_based',
                        (r'^links/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/$', 'archive_day', link_info_dict, 'blog_link_archive_day'),
                        (r'^links/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 'object_detail', link_info_dict, 'blog_link_detail'),
 )
+
+urlpatterns +=patterns{'blog.views',
+                        (r'^categories/$', 'category_list'),
+                        (r'^categories/(?P<slug>[-\w]+)/$', 'category_detail'),
+
+}
