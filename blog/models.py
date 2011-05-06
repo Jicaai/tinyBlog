@@ -13,8 +13,9 @@ class Category(models.Model):
     description = models.TextField()
 
     class Meta:
-        verbose_name_plural = 'Categories'
-    ordering = ['title']
+        ordering = ['title']
+        verbose_name_plural = "Categories"
+
 
     def __unicode__(self):
         return self.title
