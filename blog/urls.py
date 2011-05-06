@@ -22,11 +22,15 @@ urlpatterns = patterns('django.views.generic.date_based',
                        (r'^links/(?P<year>\d{4})/$', 'archive_year', link_info_dict, 'blog_link_archive_year'),
                        (r'^links/(?P<year>\d{4})/(?P<month>\w{3})/$', 'archive_month', link_info_dict, 'blog_link_archive_month'),
                        (r'^links/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/$', 'archive_day', link_info_dict, 'blog_link_archive_day'),
-                       (r'^links/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 'object_detail', link_info_dict, 'blog_link_detail'),
+                       (r'^links/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2#})/(?P<slug>[-\w]+)/$', 'object_detail', link_info_dict, 'blog_link_detail'),
 )
 
-urlpatterns +=patterns{'blog.views',
-                        (r'^categories/$', 'category_list'),
-                        (r'^categories/(?P<slug>[-\w]+)/$', 'category_detail'),
+#urlpatterns +=patterns{'blog.views',
+#                        (r'^categories/$', 'category_list'),
+#                        (r'^categories/(?P<slug>[-\w]+)/$', 'category_detail'),
+#}
 
-}
+urlpatterns += patterns('',
+                        (r'^categories/$', 'django.views.generic.list_detail.object_list', {'queryset':Category.objects.all()}),
+                        (r'^categories/(?P<slug>[-\w]+/$)', 'blog.views.category_detail'),
+                       )
