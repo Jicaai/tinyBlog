@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from models import Entry, Link, Category
+from tagging.models import Tag
 
 entry_info_dict ={
     'queryset': Entry.objects.all(),
@@ -33,4 +34,22 @@ urlpatterns = patterns('django.views.generic.date_based',
 urlpatterns += patterns('',
                         (r'^categories/$', 'django.views.generic.list_detail.object_list', {'queryset':Category.objects.all()}),
                         (r'^categories/(?P<slug>[-\w]+)/$', 'blog.views.category_detail'),
+                       )
+
+
+urlpatterns += patterns('',
+                        (r'^tags/$',
+                         'django.views.generic.list_detail.object_list',
+                         {'queryset': Tag.objects.all()}),
+                        
+                        (r'^tags/entries/(?P<tag>[-\w]+)/$',
+                         'tagging.views.tagged_object_list',
+                         {'queryset_or_model': Entry,
+                          'template_name': 'blog/entries_by_tag.html'}),
+
+                        (r'^tags/entries/(?P<tag>[-\w]+)/$',
+                         'tagging.views.tagged_object_list',
+                         {'queryset_or_model': Link,
+                          'template_name': 'blog/links_by_tag.html'}),
+
                        )
