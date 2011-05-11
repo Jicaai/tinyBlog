@@ -32,5 +32,5 @@ urlpatterns = patterns('django.views.generic.date_based',
 
 urlpatterns += patterns('',
                         (r'^categories/$', 'django.views.generic.list_detail.object_list', {'queryset':Category.objects.all()}),
-                        (r'^categories/(?P<slug>[-\w]+/$)', 'blog.views.category_detail'),
+                        (r'^categories/(?P<slug>[-\w]+)/$', 'blog.views.category_detail'),
                        )
