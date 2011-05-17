@@ -25,15 +25,6 @@ class Category(models.Model):
 
 
 class Entry(models.Model):
-    title = models.CharField(max_length=250)
-    excerpt = models.TextField(blank=True)
-    body = models.TextField()
-    pub_date = models.DateTimeField(default=datetime.datetime.now)
-    slug = models.SlugField(unique_for_date='pub_date')
-    author = models.ForeignKey(User)
-    enable_comments = models.BooleanField(default=True)
-    featured = models.BooleanField(default=False)
-    
     LIVE_STATUS = 1
     DRAFT_STATUS = 2
     HIDDEN_STATUS = 3
@@ -42,8 +33,16 @@ class Entry(models.Model):
     (DRAFT_STATUS, 'Draft'),
     (HIDDEN_STATUS, 'Hidden'),
     )
+    
+    title = models.CharField(max_length=250)
+    excerpt = models.TextField(blank=True)
+    body = models.TextField()
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
+    slug = models.SlugField(unique_for_date='pub_date')
+    author = models.ForeignKey(User)
+    enable_comments = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
     status = models.IntegerField(choices=STATUS_CHOICES, default=LIVE_STATUS)
-
     categories = models.ManyToManyField(Category)
     tags = TagField()
     excerpt_html = models.TextField(editable=False, blank=True)
@@ -51,9 +50,13 @@ class Entry(models.Model):
 
     def save(self, force_insert=False, force_update=False):
         self.body_html = markdown(self.body)
-	if self.excerpt:
-	    self.excerpt_html = markdown(self.excerpt)
-	super(Entry, self).save(force_insert, force_update)
+        if self.excerpt:
+            self.excerpt_html = markdown(self.excerpt)
+        super(Entry, self).save(force_insert, force_update)
+    
+    def LiveEntryManager(models.Manager):
+        def get_query_set(self):
+            return super(LiveEntryManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
 
     class Meta:
         verbose_name_plural = "Entries"

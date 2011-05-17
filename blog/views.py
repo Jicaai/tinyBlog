@@ -1,8 +1,10 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404wq
+
 from blog.models import Entry
 from blog.models import Category
+from django.views.generic.list_detail import object_list
 
-
+#### the blow two are not needed anymore when use generic view ####
 def entries_index(request):
     return render_to_response('blog/entry_index.html',
 	    {'entry_list': Entry.objects.all()})
@@ -24,9 +26,11 @@ def category_list(request):
     return render_to_response('blog/category_list.html',
                               {'object_list':Category.objects.all()})
 
-def cotegory_detail(request, slug):
+def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    return render_to_response('blog/category_detail.html',
-                              {'object_list': category.entry_set.all(),
-                               'category':category})
+    return object_list(request, queryset=category.live_entry_set.all(),
+                       extra_context={'category': category})
+#    return render_to_response('blog/category_detail.html',
+#                              {'object_list': category.entry_set.all(),
+#                               'category':category})
 

@@ -22,7 +22,11 @@ urlpatterns = patterns('',
     (r'^search/$', 'search.views.search'),
 
     # weBlog
-    (r'^blog/', include('blog.urls')),
+    (r'^blog/categories/', include('blog.urls.categories')),
+    (r'^blog/links/', include('blog.urls.links')),
+    (r'^blog/tags/', include('blog.urls.tags')),
+    (r'^blog/', include('blog.urls.entries')),
+    #(r'^blog/', include('blog.urls')),
     #(r'', include('django.contrib.flatpages.urls')),
 )
 
