@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Category index</title>
+</head>
+<body>
+<h1>Category index</h1>
+{% for item in object_list %}
+<h2>{{ item.title }}</h2>
+<p>{{ item.description }}</p>
+
+{% endfor %}
+</body>
+</html>
+
