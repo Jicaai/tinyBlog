@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Entries index</title>
+</head>
+<body>
+<h1>Entries index</h1>
+{% for entry in latest %}
+<h2>{{ entry.title }}</h2>
+<p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
+{{ entry.description_html|safe }}
+<p><a href="{{ entry.url }}"</a></p>
+
+{% endfor %}
+</body>
+</html>
+
