@@ -23,6 +23,10 @@ class Category(models.Model):
     def get_absolute_url(self):
         return "/categories/%s/" % self.slug
 
+class LiveEntryManager(models.Manager):
+    def get_query_set(self):
+        return super(LiveEntryManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
+
 
 class Entry(models.Model):
     LIVE_STATUS = 1
@@ -54,9 +58,10 @@ class Entry(models.Model):
             self.excerpt_html = markdown(self.excerpt)
         super(Entry, self).save(force_insert, force_update)
     
-    def LiveEntryManager(models.Manager):
-        def get_query_set(self):
-            return super(LiveEntryManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
+
+    live = LiveEntryManager()
+    objects = models.Manager()
+    
 
     class Meta:
         verbose_name_plural = "Entries"
