@@ -4,7 +4,7 @@
 <head>
     <title>{% block title %} {% endblock %}</title>
 </head>
-<body>
+<body class="{% block bodyclass %} {% endblock %}">
     <div id="header">
         <h1 id="branding">My tinyBlog</h1>
     </div>
@@ -16,18 +16,21 @@
         <h2>Navigation</h2>
         <ul id="main-nav">
             <li id="main-nav-entries">
-            <a href="/blog">Entries</a>
+            <a href="{% url blog_entry_archive_index %}">Entries</a>
             </li>
             <li id="main-nav-links">
-            <a href="/blog/links/">Links</a>
+            <a href="{% url blog_link_archive_index %}">Links</a>
             </li>
             <li id="main-nav-categories">
-            <a href="/blog/categorie/">Category</a>
+            <a href="{% url blog_category_lsit %}">Categories</a>
             </li>
             <li id="main-nav-tags">
-            <a href="/blog/tags/">Tags</a>
+            <a href="{% url blog_tag_list %}">Tags</a>
             </li>
         </ul>
+        <h2>What is this?</h2>
+        {% block whatis %}
+        {% endblock %}
     </div>
 </body>
 </html>
