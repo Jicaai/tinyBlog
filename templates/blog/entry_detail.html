@@ -1,10 +1,27 @@
-<html>
-<head>
-<title>Entries details</title>
-</head>
-<body>
-<h1>{{object.title}}</h1>
-<h3>{{object.author}}  {{object.pub_date|date:"Y  b  d"}}</h3>
-{{object.body_html|safe}}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} | {{ object.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ object.title }}</h2>
+{{ object.body_html|safe}}
+
+{% if object.categories.count %}
+<p>This entry is part of the categor{{object.categories.count|pluralize:"y,ies" }}
+{% for category in object.categories.all %}
+  <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+  {% if forloop.last %}{% else %}
+  {% ifequal forloop.revcounter0 1%}and
+  {% else %}, {% endifequal %}
+  {% endif %}
+  {% endfor %}.
+  </p>
+{% else %}
+  <p>This isn't part of any categories.</p>
+{% endif %}
+
+{% endblock %}
+
+{% block whatis %}
+<p>This is an entry posted to my blog on {{ object.pub_date|date:"F j, Y"}}.</p>
+{% endblock%}

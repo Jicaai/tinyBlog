@@ -1,19 +1,24 @@
-<html>
-<head>
-<title>Entries index</title>
-</head>
-<body>
-<h1>Entries archive month</h1>
-{% for entry in object_list %}
-<h2>{{ entry.title }}</h2>
-<p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
-{% if entry.excerpt_html %}
-{{ entry.excerpt_html|safe }}
-{% else %}
-{{ entry.body_html|truncatewords_html:"30"|safe }}
-{% endif %}
-<p><a href="{{ entry.get_absolute_url }}">Read full entry</a></p>
-{% endfor %}
-</body>
-</html>
+{% extends "base_entries.html" %}
 
+{% block title %}
+{{ block.super }} | Entries in {{month|date:"F, Y"}}
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for entry in object_list %}
+    <h2>{{ entry.title }}</h2>
+    <p>Published on {{ entry.pub_date|date:"F j" }}</p>
+    {% if entry.excerpt_html %}
+        {{ entry.excerpt_html|safe }}
+    {% else %}
+    {{ entry.body_html|truncatewords_html:"50"|safe }}
+    {% endif %}
+    <p><a href="{{ entry.get_absolute_url }}">Read full entry...</a></p>
+    {% endfor %}
+{% endblock %}
+
+{% block whatis %}
+<p>This is list of entries published in my blog in
+{{month|date:"F, Y"}}.</p>
+{% endblock %}

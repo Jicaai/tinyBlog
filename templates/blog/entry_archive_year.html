@@ -1,13 +1,18 @@
-<html>
-<head>
-<title>Entries index</title>
-</head>
-<body>
-<h1>Entries archive year</h1>
-{% for entry in date_list %}
-<h2>{{ entry }}</h2>
-<p><a href="{{ entry.get_absolute_url }}">Read full entry</a></p>
-{% endfor %}
-</body>
-</html>
+{% extends "base_entries.html" %}
 
+{% block title %}{{ block.super }} | {{year}}{% endblock %}
+
+{% block content %}
+<ul>
+    {% for month in date_list %}
+    <li>
+    <a href="{% url blog_entry_archive_month year,month|date:"b" %}">{{month|date:"F"}}</a>
+    </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}
+
+{% block whatis %}
+<p>This is list of months in {{year}} in which I published entries in my blog.</p>
+{% endblock %}

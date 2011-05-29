@@ -1,5 +1,32 @@
-{% extends "base.html" %}
+{% extends "base_links.html" %}
+
+{% block title %}{{ block.super }} | {{ object.title }}{% endblock %}
+
 {% block content %}
+<h2>{{ object.title }}</h2>
 {{ object.description_html|safe }}
 <p><a href="{{ object.url }}">Visit site</a></p>
+{% endblock %}
+
+{% block whatis %}
+<p>This is link post to my blog on {{object.pub_date|date:"F j, Y"}}.</p>
+
+{% if object.tags.count %}
+<p>This link is tagged with
+{% for tag in object.tags.all %}
+  <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+  {% if forloop.last %}{% else %}
+  {% ifequal forloop.revcounter0 1 %}and 
+  {% else %},
+  {% endifequal %}
+  {% endif %}
+  {% endfor %}
+  </p>
+{% else %}
+  <p>This link doesn't have any tags.</p>
+{% endif %}
+
+
+<p>Tags number {{ object.tags.count }}</p>
+
 {% endblock %}
