@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 
+import tagging
 from tagging.fields import TagField
 from markdown import markdown
 
@@ -20,8 +21,12 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
     
+    @models.permalink
     def get_absolute_url(self):
-        return "/categories/%s/" % self.slug
+        return ('blog_category_detail',
+                {'slug': self.slug})
+
+
 
 class LiveEntryManager(models.Manager):
     def get_query_set(self):
@@ -113,11 +118,12 @@ class Link(models.Model):
         if self.description:
             self.description_html = markdown(self.description)
         super(Link, self).save()
-
-        def get_absolute_url(self):
-            return ('blog_link_detail', (),
-                    {'year': self.pub_date.strftime('%Y'),
-                     'month': self.pub_date.strftime('%b').lower(),
-                     'day': self.pub_date.strftime('%d'),
-                     'slug': self.slug})
-        get_absolute_url = models.permalink(get_absolute_url)
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('blog_link_detail', (),
+                {'year': self.pub_date.strftime('%Y'),
+                 'month': self.pub_date.strftime('%b').lower(),
+                 'day': self.pub_date.strftime('%d'),
+                 'slug': self.slug})
+    #get_absolute_url = models.permalink(get_absolute_url)
