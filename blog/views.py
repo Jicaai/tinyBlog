@@ -21,7 +21,7 @@ def entry_detail(request, year, month, day, slug):
     return render_to_response('blog/entry_detail.html',
                               {'entry':entry})
 
-
+# category_list no required, generic view used
 def category_list(request):
     return render_to_response('blog/category_list.html',
                               {'object_list':Category.objects.all()})
@@ -30,7 +30,4 @@ def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
     return object_list(request, queryset=category.live_entry_set.all(),
                        extra_context={'category': category})
-#    return render_to_response('blog/category_detail.html',
-#                              {'object_list': category.entry_set.all(),
-#                               'category':category})
 
