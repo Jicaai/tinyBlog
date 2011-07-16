@@ -2,6 +2,8 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 
+from wmd import models as wmd_models 
+
 import tagging
 from tagging.fields import TagField
 from markdown import markdown
@@ -45,7 +47,8 @@ class Entry(models.Model):
     
     title = models.CharField(max_length=250)
     excerpt = models.TextField(blank=True)
-    body = models.TextField()
+    #body = models.TextField()
+    body = wmd_models.MarkDownField()
     pub_date = models.DateTimeField(default=datetime.datetime.now)
     slug = models.SlugField(unique_for_date='pub_date')
     author = models.ForeignKey(User)
@@ -56,6 +59,8 @@ class Entry(models.Model):
     tags = TagField()
     excerpt_html = models.TextField(editable=False, blank=True)
     body_html = models.TextField(editable=False, blank=True)
+
+    img = models.ImageField(upload_to="Image")
 
     def save(self, force_insert=False, force_update=False):
         self.body_html = markdown(self.body)

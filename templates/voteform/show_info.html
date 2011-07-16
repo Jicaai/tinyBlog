@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html>
+<head>
+    <title>投票结果</title>
+</head>
+<body>
+<table>
+<tr><td width=200>姓名</td><td>得票数</td></tr>
+ {% for item in all %}
+<tr><td width=200>{{item.name}}</td><td>{{item.votes}}</td></tr>
+{% endfor %}
+</table>
+<p><a href='/vote'> 返回投票 </a></p>
+</body>
+</html>
+

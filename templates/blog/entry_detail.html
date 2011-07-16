@@ -4,6 +4,7 @@
 
 {% block content %}
 <h2>{{ object.title }}</h2>
+{{ object.img }}
 {{ object.body_html|safe}}
 
 {% if object.categories.count %}

@@ -15,5 +15,9 @@ urlpatterns = patterns('',
     (r'^blog/tags/', include('blog.urls.tags')),
     (r'^blog/', include('blog.urls.entries')),
     #(r'', include('django.contrib.flatpages.urls')),
+
+    (r'^vote/$', 'voteform.views.checked'),
+    (r'^show-result/$', 'voteform.views.show'),
+    (r'^code/$', 'voteform.views.invite_codes'),
 )
 

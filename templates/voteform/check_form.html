@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html>
+<head>
+    <title>Search</title>
+</head>
+<body>
+
+{% ifequal error_code 0 %} 
+    <form action="/vote/" method="POST">
+        <input type="checkbox"  value=1 name="votes"/>1
+        <input type="checkbox"  value=2 name="votes"/>2
+        <input type="checkbox"  value=3 name="votes"/>3
+        <input type="checkbox"  value=4 name="votes"/>4
+        <input type="checkbox"  value=5 name="votes"/>5
+        <input type="checkbox"  value=6 name="votes"/>6
+        <input type="checkbox"  value=7 name="votes"/>7
+        <input type="checkbox"  value=8 name="votes"/>8
+        <input type="checkbox"  value=9 name="votes"/>9
+        <input type="checkbox"  value=10 name="votes"/>10
+        <input type="checkbox"  value=11 name="votes"/>11
+        <input type="checkbox"  value=12 name="votes"/>12
+        <input type="checkbox"  value=13 name="votes"/>13
+        <input type="checkbox"  value=14 name="votes"/>14
+        <input type="checkbox"  value=15 name="votes"/>15
+        <input type="checkbox"  value=16 name="votes"/>16
+        <input type="text" name="invitation">
+        <input type="submit" value="Submit">
+    </form>
+{% endifequal %}
+
+{% ifequal error_code 1 %} 
+<p>请按照要求的数量（1-10）投票和填写验证码</p>
+{% endifequal %}
+
+{% ifequal error_code 2 %} 
+<p>验证码错误！</p>
+{% endifequal %}
+
+{% ifequal error_code 3 %} 
+<p>验证码已经被使用</p>
+{% endifequal %}
+
+{% ifequal error_code 100 %} 
+<p>投票成功</p>
+{% endifequal %}
+<p><a href='/show-result'> 查看结果 </a></p>
+</body>
+</html>
+
