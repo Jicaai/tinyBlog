@@ -5,6 +5,7 @@ import os.path
 admin.autodiscover()
 
 urlpatterns = patterns('',
+		(r'^favicon.ico$', 'django.views.generic.simple.redirect_to',{'url':'/static/images/favicon.ico'}),
     (r'^admin/', include(admin.site.urls)),
     (r'^tiny_mce/(?P<path>.*)$', 'django.views.static.serve', {'document_root':os.path.join(os.path.dirname(__file__),'templates/tiny_mce').replace('\\','/')}),
     (r'^search/$', 'search.views.search'),
