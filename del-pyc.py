@@ -12,9 +12,7 @@ def del_pyc(root, patterns='*'):
         patterns = patterns.split(';')
         for path, subdir, files in os.walk(root):
                 for name in files:
-#                        yield name
                         for pattern in patterns:
-#                                yield pattern
                                if fnmatch.fnmatch(name, pattern.strip()):
                                         yield os.path.join(path, name)
 
