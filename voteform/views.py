@@ -14,8 +14,7 @@ VOTE_MAX = 10
 
 
 def vote_filter(num):
-	# if the vote value is right
-
+	# verify the invitation, here just transform it to int
 	return int(num)
 
 
@@ -33,7 +32,6 @@ def checked(request):
                 else:
 			if result and (result.status==True):
 				vote_lsit=[vote_filter(i) for i in votes]
-				#print vote_lsit
 				'''----------------- vote begin -------------'''
 				for item in vote_lsit:
 					try:check=Person.objects.get(id=item)
@@ -43,8 +41,8 @@ def checked(request):
 						check.votes+=1
 						check.save()
 
-				'''----------------- vote begin -------------'''
-				# set status=False
+				'''----------------- save vote info -------------'''
+				# set status to false
 				result.status=False
 				result.usedip=guest_ip
 				result.voteinfo=str(vote_lsit)
