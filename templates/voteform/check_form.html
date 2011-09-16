@@ -8,7 +8,7 @@
 <body>
 
 {% ifequal error_code 0 %} 
-    <form action="/vote/" method="POST">
+<form action="/vote/" method="POST">{% csrf_token %}
         <input type="checkbox"  value=1 name="votes"/>1
         <input type="checkbox"  value=2 name="votes"/>2
         <input type="checkbox"  value=3 name="votes"/>3
